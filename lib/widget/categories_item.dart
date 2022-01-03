@@ -1,3 +1,4 @@
+import 'package:dishes_sets_franek/screens/meals_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../consts/const.dart';
@@ -12,9 +13,10 @@ class CategoryItem extends StatelessWidget {
   final String id;
 
   void selectCategory(BuildContext context) {
+    /*passing data to the MealScreen with inherit*/
     Navigator.pushNamed(
       context,
-      '/categories-meals',
+      MealScreen.id,
       arguments: {
         'title': title,
         'id': id,
