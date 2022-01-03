@@ -2,8 +2,8 @@ import 'package:dishes_sets_franek/consts/const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'categories_item.dart';
-import 'dummy_data.dart';
+import '../widget/categories_item.dart';
+import '../dummy_data.dart';
 
 class Categories extends StatelessWidget {
   const Categories({Key? key}) : super(key: key);

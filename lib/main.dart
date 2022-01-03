@@ -1,6 +1,6 @@
 
-import 'package:dishes_sets_franek/categories_screen.dart';
-import 'package:dishes_sets_franek/category_meals_screen.dart';
+import 'package:dishes_sets_franek/screens/categories_screen.dart';
+import 'package:dishes_sets_franek/screens/category_meals_screen.dart';
 import 'package:dishes_sets_franek/consts/const.dart';
 import 'package:flutter/material.dart';
 
