@@ -6,26 +6,69 @@ import 'favorite_screean.dart';
 
 class TabScreen extends StatefulWidget {
   TabScreen({Key? key}) : super(key: key);
-   var myTabs = const [
-    Icon(
-      Icons.category,
-      color: kOrangeColor,
-    ),
-    Icon(
-      Icons.favorite,
-      color: kOrangeColor,
-    ),
-  ];
+
   static const id = 'tabScreen';
+
+
+
+
 
   @override
   _TabScreenState createState() => _TabScreenState();
 }
 
 class _TabScreenState extends State<TabScreen> {
+  var _myTabs = const [
+    BottomNavigationBarItem(
+        icon: Icon(
+          Icons.category,
+          color: kOrangeColor,
+        ),
+        label: 'Category'
+    ),
+    BottomNavigationBarItem(
+        icon: Icon(
+          Icons.favorite,
+          color: kOrangeColor,
+        ),
+        label: 'Favourite'
+    ),
+  ];
+
+
+  final List<Map<String, Object>> _routsList = const [
+    {'rout': CategoriesScreen(), 'title': 'Categories'},
+    {'rout': FavouriteScreen(), 'title': 'Favourite'},
+  ];
+
+  int selectedTab = 0;
+  void selectTab(int index){
+    setState(() {
+      selectedTab = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: kMainColor,
+        centerTitle: true,
+        title: Text(
+          _routsList[selectedTab]['title'] as String,
+          style: kTextMainTitle,
+        ),
+      ),
+      body: _routsList[selectedTab]['rout'] as Widget,
+      bottomNavigationBar:BottomNavigationBar(
+        items:_myTabs,
+        currentIndex: selectedTab,
+        onTap:selectTab,
+      ),
+    );
+  }
+}
+/*DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
@@ -47,6 +90,4 @@ class _TabScreenState extends State<TabScreen> {
           ],
         ),
       ),
-    );
-  }
-}
+    );*/
