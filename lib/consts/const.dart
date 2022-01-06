@@ -8,8 +8,8 @@ const kBlueColor = Color(0xff93afc0);
 const kBlackColor = Colors.black;
 const kWhiteColor = Colors.white;
 
-const kTextMainTitle = TextStyle(fontFamily:'RobotoCondensed',fontSize: 25, fontWeight: FontWeight.w900, color: kBlackColor);
-const kTextSubTitle = TextStyle(fontFamily:'RobotoCondensed',fontSize: 20, fontWeight: FontWeight.w700);
+const kTextMainTitle = TextStyle(fontFamily:'RobotoCondensed',fontSize: 25, fontWeight: FontWeight.w900, color: kWhiteColor);
+const kTextSubTitle = TextStyle(fontFamily:'RobotoCondensed',fontSize: 20, fontWeight: FontWeight.w700,  );
 const kTextinParagraph= TextStyle(fontFamily:'Relaway',fontSize: 16);
 
 

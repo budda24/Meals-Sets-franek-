@@ -6,10 +6,14 @@ import 'package:dishes_sets_franek/models/meal.dart';
 import '../consts/const.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem({Key? key, required this.meal}) : super(key: key);
-
   final Meal meal;
+  final Function deleteIteml;
 
+  const MealItem({
+    Key? key,
+    required this.meal,
+    required this.deleteIteml,
+  }) : super(key: key);
 
   /* dinamicly converting enums from dummy_data to string interpretation*/
   get affordability {
@@ -37,15 +41,17 @@ class MealItem extends StatelessWidget {
         'null';
     }
   }
+
 /*assing meeal object to the meal detail screen*/
-  void selectMeal(BuildContext context){
-    Navigator.pushNamed(context, MealDetailsScreen.id, arguments: meal);
+  void selectMeal(BuildContext context) {
+    Navigator.pushNamed(context, MealDetailsScreen.id, arguments: {'meal':meal, 'deleteFunction': deleteIteml}, )
+        .then((value) => null);
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap:()=> selectMeal(context),
+      onTap: () => selectMeal(context),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: Container(
@@ -58,8 +64,12 @@ class MealItem extends StatelessWidget {
                 width: 384,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.only(
-                      topRight: Radius.circular(15), topLeft: Radius.circular(15)),
-                  child: Image.network(meal.imageUrl, fit: BoxFit.cover,),
+                      topRight: Radius.circular(15),
+                      topLeft: Radius.circular(15)),
+                  child: Image.network(
+                    meal.imageUrl,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               Positioned(
@@ -92,16 +102,21 @@ class MealItem extends StatelessWidget {
                     Row(
                       children: [
                         Icon(Icons.accessibility),
-                        Text(complexity, style: kTextSubTitle,)
+                        Text(
+                          complexity,
+                          style: kTextSubTitle,
+                        )
                       ],
                     ),
                     Row(
                       children: [
                         Icon(Icons.account_balance_wallet_rounded),
-                        Text(complexity, style: kTextSubTitle,)
+                        Text(
+                          complexity,
+                          style: kTextSubTitle,
+                        )
                       ],
                     ),
-
                   ],
                 ),
               )

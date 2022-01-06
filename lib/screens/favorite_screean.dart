@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'drawer_screen.dart';
+
 class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen({Key? key}) : super(key: key);
 
@@ -7,7 +9,7 @@ class FavouriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Text('favorite'),
+        child: const Text('favorite'),
       ),
     );
   }

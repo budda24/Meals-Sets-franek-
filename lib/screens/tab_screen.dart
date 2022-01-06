@@ -2,6 +2,7 @@ import 'package:dishes_sets_franek/consts/const.dart';
 import 'package:flutter/material.dart';
 
 import 'categories_screen.dart';
+import 'drawer_screen.dart';
 import 'favorite_screean.dart';
 
 class TabScreen extends StatefulWidget {
@@ -51,8 +52,9 @@ class _TabScreenState extends State<TabScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerWidget(),
       appBar: AppBar(
-        backgroundColor: kMainColor,
+        backgroundColor: kBlueColor,
         centerTitle: true,
         title: Text(
           _routsList[selectedTab]['title'] as String,
@@ -61,6 +63,10 @@ class _TabScreenState extends State<TabScreen> {
       ),
       body: _routsList[selectedTab]['rout'] as Widget,
       bottomNavigationBar:BottomNavigationBar(
+        backgroundColor: kBlueColor,
+        selectedLabelStyle:kTextSubTitle,
+        selectedItemColor: kOrangeColor,
+        unselectedItemColor: kWhiteColor,
         items:_myTabs,
         currentIndex: selectedTab,
         onTap:selectTab,

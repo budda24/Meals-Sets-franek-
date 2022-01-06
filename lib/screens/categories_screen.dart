@@ -14,6 +14,14 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kMainColor,
+      /*appBar: AppBar(
+        backgroundColor: kBlueColor,
+        centerTitle: true,
+        title: const Text(
+          'Categories',
+          style: kTextMainTitle,
+        ),
+      ),*/
       body: GridView(
         padding: const EdgeInsets.all(20),
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

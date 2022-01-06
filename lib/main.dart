@@ -1,5 +1,6 @@
 
 import 'package:dishes_sets_franek/screens/categories_screen.dart';
+import 'package:dishes_sets_franek/screens/filter_screean.dart';
 import 'package:dishes_sets_franek/screens/meals_screen.dart';
 import 'package:dishes_sets_franek/consts/const.dart';
 import 'package:dishes_sets_franek/screens/meal_details_screen.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         CategoriesScreen.id:(ctx)=> const CategoriesScreen(),
         MealScreen.id: (ctx) => const  MealScreen(),
         MealDetailsScreen.id: (ctx) =>  MealDetailsScreen(),
+        FilterScreean.id: (ctx) => const FilterScreean(),
 
       },
     );

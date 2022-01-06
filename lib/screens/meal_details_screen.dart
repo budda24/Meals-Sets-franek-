@@ -3,8 +3,11 @@ import 'package:dishes_sets_franek/models/meal.dart';
 import 'package:flutter/material.dart';
 
 class MealDetailsScreen extends StatelessWidget {
+  /*final Function deleteIteml;*/
+  
   const MealDetailsScreen({
     Key? key,
+    /*required this.deleteIteml*/
   }) : super(key: key);
   static const id = 'mealDetailsScreen';
 
@@ -23,13 +26,16 @@ class MealDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final routArgs = ModalRoute.of(context)!.settings.arguments as Meal;
+
+    final routArgs = ModalRoute.of(context)!.settings.arguments as Map;
+    var meal = routArgs['meal'] as Meal;
+    var deleteFunction = routArgs['deleteFunction'];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kMainColor,
         title: Center(
           child: Text(
-            routArgs.title,
+            meal.title,
             style: kTextMainTitle,
           ),
         ),
@@ -41,7 +47,7 @@ class MealDetailsScreen extends StatelessWidget {
               height: 350,
               width: double.infinity,
               child: Image.network(
-                routArgs.imageUrl,
+                meal.imageUrl,
                 fit: BoxFit.cover,
               ),
             ),
@@ -49,14 +55,14 @@ class MealDetailsScreen extends StatelessWidget {
               height: 10,
             ),
             Text(
-              routArgs.title,
+              meal.title,
               textAlign: TextAlign.center,
               style: kTextMainTitle,
             ),
             scroledItemBox(
               child: ListView(
                 children: [
-                  ...routArgs.ingredients.map((e) {
+                  ...meal.ingredients.map((e) {
                     return Container(
                       decoration: BoxDecoration(
                           color: kOrangeColor,
@@ -77,7 +83,7 @@ class MealDetailsScreen extends StatelessWidget {
               child: ListView(
                 children: [
                   ...List.generate(
-                    routArgs.steps.length,
+                    meal.steps.length,
                     (index) => ListTile(
                       leading: CircleAvatar(
                         child: Text(
@@ -85,16 +91,30 @@ class MealDetailsScreen extends StatelessWidget {
                           style: kTextMainTitle,
                         ),
                       ),
-                      title: Text(routArgs.steps[index]),
+                      title: Text(meal.steps[index]),
                     ),
                   )
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             )
           ],
+        ),
+      ),
+      floatingActionButton: InkWell(
+        onTap: (){
+          deleteFunction(meal.id);
+
+          Navigator.of(context).pop(meal.id);
+        },
+        child: const CircleAvatar(
+          backgroundColor: kOrangeColor,
+          child: Icon(
+            Icons.remove_done,
+            color: kWhiteColor,
+          ),
         ),
       ),
     );

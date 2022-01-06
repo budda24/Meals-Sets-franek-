@@ -7,10 +7,29 @@ import '../consts/const.dart';
 import '../dummy_data.dart';
 import '../models/meal.dart';
 
-class MealScreen extends StatelessWidget {
+class MealScreen extends StatefulWidget {
  const MealScreen({Key? key}) : super(key: key);
 
- static const id = 'categoryMealScreen';
+  static var id = 'categoryMealScreen';
+
+  @override
+  State<MealScreen> createState() => _MealScreenState();
+}
+
+class _MealScreenState extends State<MealScreen> {
+  @override
+  var firstInit = false;
+
+  late List<Meal> categoryMeals;
+
+  late List<Meal> displayedMeals;
+
+  void deleteItem(String id){
+    setState(() {
+      displayedMeals.removeWhere((element) => element.id == id);
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +37,24 @@ class MealScreen extends StatelessWidget {
     final routArgs =
         ModalRoute.of(context)!.settings.arguments as Map<String, String>;
 
+    /*void didChangeDependencies() {*/
+      if(!firstInit){
+        /* creating new list containing only meals with id passed from categories screen*/
+        categoryMeals = DUMMY_MEALS
+            .where((element) => element.categories.contains(routArgs['id']))
+            .toList();
+        firstInit = true;
+        displayedMeals = categoryMeals;
+      }
+      /*super.didChangeDependencies();*/
+   /* }*/
+
    /* ?? to avoid null safty means when null asign ""*/
     var title = routArgs['title'] ?? '';
-    final id = routArgs['id'] ?? '';
+    /*final id = routArgs['id'] ?? '';*/
 
-   /* creating new list containing only meals with id passed from categories screen*/
-    List<Meal> categoryMeals = DUMMY_MEALS
-        .where((element) => element.categories.contains(id))
-        .toList();
+
+
 
     return Scaffold(
       backgroundColor: kMainColor,
@@ -43,9 +72,9 @@ class MealScreen extends StatelessWidget {
           color: kOrangeColor.withOpacity(0.6),
           child: ListView(
             children: [
-              ...categoryMeals.map((e) {
+              ...displayedMeals.map((e) {
                 return MealItem(
-                  meal: e,
+                  meal: e, deleteIteml: deleteItem,
                 );
               }).toList()
             ],
