@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:dishes_sets_franek/screens/meal_details_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -44,8 +46,12 @@ class MealItem extends StatelessWidget {
 
 /*assing meeal object to the meal detail screen*/
   void selectMeal(BuildContext context) {
-    Navigator.pushNamed(context, MealDetailsScreen.id, arguments: {'meal':meal, 'deleteFunction': deleteIteml}, )
-        .then((value) => null);
+    Navigator.pushNamed(
+      context,
+      MealDetailsScreen.id,
+      /*passing map of arguments to MealDetailsScreen*/
+      arguments: {'meal': meal, 'deleteFunction': deleteIteml},
+    );
   }
 
   @override

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../widget/categories_item.dart';
 import '../dummy_data.dart';
+import 'drawer_screen.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
@@ -14,14 +15,10 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kMainColor,
-      /*appBar: AppBar(
+      drawer: DrawerWidget(),
+      appBar: AppBar(
         backgroundColor: kBlueColor,
-        centerTitle: true,
-        title: const Text(
-          'Categories',
-          style: kTextMainTitle,
-        ),
-      ),*/
+      ),
       body: GridView(
         padding: const EdgeInsets.all(20),
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

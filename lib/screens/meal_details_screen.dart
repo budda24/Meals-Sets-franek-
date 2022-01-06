@@ -26,9 +26,11 @@ class MealDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    /*accessing the arguments passed with the Navigator.pushNamed(context, MealDetailsScreen.id, arguments: {'meal':meal, 'deleteFunction': deleteIteml} in meal item*/
     final routArgs = ModalRoute.of(context)!.settings.arguments as Map;
+    /*assigning meal passed from the meals_screean*/
     var meal = routArgs['meal'] as Meal;
+    /*assigning delete function passed from the meals_screean*/
     var deleteFunction = routArgs['deleteFunction'];
     return Scaffold(
       appBar: AppBar(
@@ -106,7 +108,6 @@ class MealDetailsScreen extends StatelessWidget {
       floatingActionButton: InkWell(
         onTap: (){
           deleteFunction(meal.id);
-
           Navigator.of(context).pop(meal.id);
         },
         child: const CircleAvatar(
