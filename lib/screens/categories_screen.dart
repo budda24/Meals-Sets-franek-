@@ -1,7 +1,7 @@
-import 'package:dishes_sets_franek/consts/const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../consts/const.dart';
 import '../widget/categories_item.dart';
 import '../dummy_data.dart';
 import 'drawer_screen.dart';
@@ -17,7 +17,12 @@ class CategoriesScreen extends StatelessWidget {
       backgroundColor: kMainColor,
       drawer: DrawerWidget(),
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: kBlueColor,
+        title: const Text(
+          'Categories',
+          style: kTextMainTitle,
+        ),
       ),
       body: GridView(
         padding: const EdgeInsets.all(20),

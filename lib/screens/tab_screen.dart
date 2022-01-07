@@ -11,15 +11,15 @@ class TabScreen extends StatefulWidget {
   static const id = 'tabScreen';
 
 
-
-
-
   @override
   _TabScreenState createState() => _TabScreenState();
 }
 
 class _TabScreenState extends State<TabScreen> {
-  var _myTabs = const [
+
+
+  /*List of icons used for the drawer */
+  final _myTabs = const [
     BottomNavigationBarItem(
         icon: Icon(
           Icons.category,
@@ -36,12 +36,13 @@ class _TabScreenState extends State<TabScreen> {
     ),
   ];
 
-
+/*list of routs for the drawer*/
   final List<Map<String, Object>> _routsList = const [
     {'rout': CategoriesScreen(), 'title': 'Categories'},
     {'rout': FavouriteScreen(), 'title': 'Favourite'},
   ];
 
+/*  to change the index an use it in _routList*/
   int selectedTab = 0;
   void selectTab(int index){
     setState(() {
@@ -52,15 +53,7 @@ class _TabScreenState extends State<TabScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: DrawerWidget(),
-      appBar: AppBar(
-        backgroundColor: kBlueColor,
-        centerTitle: true,
-        title: Text(
-          _routsList[selectedTab]['title'] as String,
-          style: kTextMainTitle,
-        ),
-      ),
+
       body: _routsList[selectedTab]['rout'] as Widget,
       bottomNavigationBar:BottomNavigationBar(
         backgroundColor: kBlueColor,

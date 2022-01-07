@@ -85,8 +85,8 @@ const DUMMY_MEALS = [
       'The sauce will be done once the spaghetti are.',
       'Feel free to add some cheese on top of the finished dish.'
     ],
-    isGlutenFree: false,
-    isVegan: true,
+    isGlutenFree: true,
+    isVegan: false,
     isVegetarian: true,
     isLactoseFree: true,
   ),

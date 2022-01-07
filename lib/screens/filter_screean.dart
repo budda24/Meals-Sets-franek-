@@ -1,9 +1,11 @@
-import 'package:dishes_sets_franek/consts/const.dart';
-import 'package:dishes_sets_franek/models/filters.dart';
+
 
 import 'package:flutter/material.dart';
 
 import 'drawer_screen.dart';
+import '../consts/const.dart';
+import '../models/filters.dart';
+import '../screens/categories_screen.dart';
 
 class FilterScreean extends StatefulWidget {
   FilterScreean({Key? key, required this.filters}) : super(key: key);
@@ -15,8 +17,12 @@ class FilterScreean extends StatefulWidget {
 }
 
 class _FilterScreeanState extends State<FilterScreean> {
+
+  /*method to build swich tile*/
   Widget _buildSwitchTile(String title, bool boolvalue, void function(value)) {
     return SwitchListTile(
+      activeColor: kOrangeColor,
+      inactiveThumbColor: kOrangeColor,
       title: Text(
         title,
         style: kTextSubTitle,
@@ -26,24 +32,16 @@ class _FilterScreeanState extends State<FilterScreean> {
     );
   }
 
-  /*late bool isGlutenFree;
-  late bool isVegan;
-  late bool isVegetarian;
-  late bool isLactoseFree;
-
-  @override
-  void initState() {
-     isGlutenFree = widget.filters.isGlutenFree;
-     isVegan = widget.filters.isVegan;
-     isVegetarian = widget.filters.isVegetarian;
-     isLactoseFree = widget.filters.isLactoseFree;
-    super.initState();
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(onPressed: (){
+            Navigator.of(context).pushNamed(CategoriesScreen.id);
+          }, icon: Icon(Icons.save),)
+        ],
+        elevation: 4,
         backgroundColor: kBlueColor,
         centerTitle: true,
         title: const Text(
@@ -52,6 +50,8 @@ class _FilterScreeanState extends State<FilterScreean> {
         ),
       ),
       drawer: DrawerWidget(),
+      /*floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+      floatingActionButton: Icon(Icons.save),*/
       body: Column(
         children: [
           _buildSwitchTile(
