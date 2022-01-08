@@ -2,6 +2,7 @@ import 'package:dishes_sets_franek/consts/const.dart';
 import 'package:dishes_sets_franek/screens/categories_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'favorite_screean.dart';
 import 'filter_screean.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -79,6 +80,12 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   Navigator.pushReplacementNamed(context, FilterScreean.id);
                 },
                 icon: Icons.filter_1_outlined),
+            drawerListTile(
+                title: 'Favorites',
+                navigation: () {
+                  Navigator.pushReplacementNamed(context, FavouriteScreen.id);
+                },
+                icon: Icons.star),
           ],
         ),
       ),

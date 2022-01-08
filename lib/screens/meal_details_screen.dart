@@ -2,15 +2,19 @@ import 'package:dishes_sets_franek/consts/const.dart';
 import 'package:dishes_sets_franek/models/meal.dart';
 import 'package:flutter/material.dart';
 
-class MealDetailsScreen extends StatelessWidget {
-  /*final Function deleteIteml;*/
-  
-  const MealDetailsScreen({
-    Key? key,
-    /*required this.deleteIteml*/
-  }) : super(key: key);
+class MealDetailsScreen extends StatefulWidget {
+  final Function toggleFavorites;
+  final Function? unFavorite;
+
+  const MealDetailsScreen({Key? key, required this.toggleFavorites,  this.unFavorite})
+      : super(key: key);
   static const id = 'mealDetailsScreen';
 
+  @override
+  State<MealDetailsScreen> createState() => _MealDetailsScreenState();
+}
+
+class _MealDetailsScreenState extends State<MealDetailsScreen> {
   Widget scroledItemBox({required Widget child}) {
     return Container(
       margin: EdgeInsets.only(top: 10),
@@ -23,17 +27,36 @@ class MealDetailsScreen extends StatelessWidget {
       child: child,
     );
   }
+  void favoritPressed (Meal meal) {
+    setState(() {
+      meal.isFavorite = meal.isFavorite ? false : true;
+      widget.toggleFavorites(meal.id);
+    });
+  }
 
+
+
+
+  /*bool init = false;
+
+  var routArgs;*/
   @override
   Widget build(BuildContext context) {
     /*accessing the arguments passed with the Navigator.pushNamed(context, MealDetailsScreen.id, arguments: {'meal':meal, 'deleteFunction': deleteIteml} in meal item*/
-    final routArgs = ModalRoute.of(context)!.settings.arguments as Map;
+    var routArgs = ModalRoute.of(context)!.settings.arguments as Map;
     /*assigning meal passed from the meals_screean*/
     var meal = routArgs['meal'] as Meal;
     /*assigning delete function passed from the meals_screean*/
     var deleteFunction = routArgs['deleteFunction'];
+
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon(meal.isFavorite?Icons.star:Icons.star_border),
+            onPressed: () => favoritPressed(meal),
+          )
+        ],
         backgroundColor: kMainColor,
         title: Center(
           child: Text(
@@ -106,7 +129,7 @@ class MealDetailsScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: InkWell(
-        onTap: (){
+        onTap: () {
           deleteFunction(meal.id);
           Navigator.of(context).pop(meal.id);
         },

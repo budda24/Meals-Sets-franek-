@@ -5,15 +5,60 @@ import '../consts/const.dart';
 import '../widget/categories_item.dart';
 import '../dummy_data.dart';
 import 'drawer_screen.dart';
+import 'favorite_screean.dart';
 
-class CategoriesScreen extends StatelessWidget {
+class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
 
   static const id = 'categoriesScreen';
 
   @override
+  State<CategoriesScreen> createState() => _CategoriesScreenState();
+}
+
+class _CategoriesScreenState extends State<CategoriesScreen> {
+  final _myTabs = const [
+    BottomNavigationBarItem(
+        icon: Icon(
+          Icons.category,
+          color: kOrangeColor,
+        ),
+        label: 'Category'
+    ),
+    BottomNavigationBarItem(
+        icon: Icon(
+          Icons.favorite,
+          color: kOrangeColor,
+        ),
+        label: 'Favourite'
+    ),
+  ];
+
+  final List<Map<String, Object>> _routsList =  [
+    {'rout': CategoriesScreen(), 'title': 'Categories'},
+    {'rout': FavouriteScreen(), 'title': 'Favourite'},
+  ];
+
+  int selectedTab = 0;
+
+  void selectTab(int index){
+    setState(() {
+      selectedTab = index;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar:BottomNavigationBar(
+        backgroundColor: kBlueColor,
+        selectedLabelStyle:kTextSubTitle,
+        selectedItemColor: kOrangeColor,
+        unselectedItemColor: kWhiteColor,
+        items:_myTabs,
+        currentIndex: selectedTab,
+        onTap:selectTab,
+      ),
       backgroundColor: kMainColor,
       drawer: DrawerWidget(),
       appBar: AppBar(
@@ -40,3 +85,5 @@ class CategoriesScreen extends StatelessWidget {
     );
   }
 }
+
+

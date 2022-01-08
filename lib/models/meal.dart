@@ -17,6 +17,7 @@ class Meal {
   final String imageUrl;
   final List<String> ingredients;
   final int duration;
+  bool isFavorite ;
 
   final List<String> steps;
 
@@ -27,7 +28,8 @@ class Meal {
   final bool isVegan;
   final bool isVegetarian;
 
-  const Meal({
+   Meal({
+    this.isFavorite = false,
     required this.duration,
     required this.id,
     required this.categories,

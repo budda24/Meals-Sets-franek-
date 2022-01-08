@@ -9,12 +9,12 @@ import '../consts/const.dart';
 
 class MealItem extends StatelessWidget {
   final Meal meal;
-  final Function deleteIteml;
+   Function? deleteIteml;
 
-  const MealItem({
+   MealItem({
     Key? key,
     required this.meal,
-    required this.deleteIteml,
+    this.deleteIteml,
   }) : super(key: key);
 
   /* dinamicly converting enums from dummy_data to string interpretation*/

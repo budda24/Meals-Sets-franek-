@@ -20,6 +20,7 @@ class MealScreen extends StatefulWidget {
 }
 
 class _MealScreenState extends State<MealScreen> {
+
   @override
 
   var firstInit = false;
@@ -72,7 +73,7 @@ class _MealScreenState extends State<MealScreen> {
 
    /* ?? to avoid null safty means when null asign ""*/
     var title = routArgs['title'] ?? '';
-    /*final id = routArgs['id'] ?? '';*/
+    final id = routArgs['id'] ?? '';
 
 
 

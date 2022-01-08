@@ -1,5 +1,6 @@
-
 import 'package:dishes_sets_franek/dummy_data.dart';
+import 'package:dishes_sets_franek/models/meal.dart';
+import 'package:dishes_sets_franek/screens/favorite_screean.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/categories_screen.dart';
@@ -8,6 +9,7 @@ import '../screens/meals_screen.dart';
 import '../consts/const.dart';
 import '../screens/meal_details_screen.dart';
 import '../screens/tab_screen.dart';
+import 'dummy_data.dart';
 import 'models/filters.dart';
 
 void main() {
@@ -19,27 +21,39 @@ class MyApp extends StatefulWidget {
 
   @override
   State<MyApp> createState() => _MyAppState();
-
-
 }
 
 class _MyAppState extends State<MyApp> {
   Filters filters = Filters(false, false, false, false);
+  List<Meal> favoritMeals = [];
+
+  /*callback functiont passed to details meal*/
+  void toggleFavorites(String id) {
+    int index = DUMMY_MEALS.indexWhere((element) => element.id == id);
+    if(favoritMeals.length == 0){
+      /*adding element to the empty list*/
+        favoritMeals.add(DUMMY_MEALS[index]);
+    }else{
+      /*checking if favoriteMeals contains the element*/
+       !favoritMeals[index].id.contains(id) ?  favoritMeals.add(DUMMY_MEALS[index]): favoritMeals;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Dishes Set Franek',
       color: kMainColor,
-      initialRoute:TabScreen.id,
+      initialRoute: CategoriesScreen.id,
       routes: {
-        TabScreen.id:(ctx)=> TabScreen(),
-        CategoriesScreen.id:(ctx)=> const CategoriesScreen(),
-        MealScreen.id: (ctx) =>   MealScreen(filters: filters),
-        MealDetailsScreen.id: (ctx) =>  MealDetailsScreen(),
-        FilterScreean.id: (ctx) =>  FilterScreean(filters: filters),
-
+        /*TabScreen.id: (ctx) => TabScreen(),*/
+        CategoriesScreen.id: (ctx) => const CategoriesScreen(),
+        MealScreen.id: (ctx) => MealScreen(filters: filters),
+        MealDetailsScreen.id: (ctx) =>
+            MealDetailsScreen(toggleFavorites: toggleFavorites),
+        FilterScreean.id: (ctx) => FilterScreean(filters: filters),
+        FavouriteScreen.id: (ctx) => FavouriteScreen(favoriteMeals:favoritMeals),
       },
     );
   }

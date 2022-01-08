@@ -37,7 +37,7 @@ class _TabScreenState extends State<TabScreen> {
   ];
 
 /*list of routs for the drawer*/
-  final List<Map<String, Object>> _routsList = const [
+  final List<Map<String, Object>> _routsList =  [
     {'rout': CategoriesScreen(), 'title': 'Categories'},
     {'rout': FavouriteScreen(), 'title': 'Favourite'},
   ];
