@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 class MealDetailsScreen extends StatefulWidget {
   final Function toggleFavorites;
-  final Function? unFavorite;
+  final Function unFavorite;
 
-  const MealDetailsScreen({Key? key, required this.toggleFavorites,  this.unFavorite})
+  const MealDetailsScreen({Key? key, required this.toggleFavorites,required  this.unFavorite})
       : super(key: key);
   static const id = 'mealDetailsScreen';
 
@@ -30,7 +30,13 @@ class _MealDetailsScreenState extends State<MealDetailsScreen> {
   void favoritPressed (Meal meal) {
     setState(() {
       meal.isFavorite = meal.isFavorite ? false : true;
-      widget.toggleFavorites(meal.id);
+      if(meal.isFavorite) {
+        widget.toggleFavorites(meal.id);
+      } else {
+
+          widget.unFavorite(meal.id);
+
+      }
     });
   }
 

@@ -34,12 +34,16 @@ class _MyAppState extends State<MyApp> {
       /*adding element to the empty list*/
         favoritMeals.add(DUMMY_MEALS[index]);
     }else{
-      /*checking if favoriteMeals contains the element*/
-      /*!favoritMeals[index].id.contains(id) ?  favoritMeals.add(DUMMY_MEALS[index]): favoritMeals;*/
       if(!favoritMeals.contains(DUMMY_MEALS[index])) {
         favoritMeals.add(DUMMY_MEALS[index]);
       }
+
     }
+  }
+
+  void unFavorite(String id){
+    int index = favoritMeals.indexWhere((element) => element.id == id);
+    favoritMeals.removeAt(index);
   }
 
   @override
@@ -54,7 +58,7 @@ class _MyAppState extends State<MyApp> {
         CategoriesScreen.id: (ctx) => const CategoriesScreen(),
         MealScreen.id: (ctx) => MealScreen(filters: filters),
         MealDetailsScreen.id: (ctx) =>
-            MealDetailsScreen(toggleFavorites: toggleFavorites),
+            MealDetailsScreen(toggleFavorites: toggleFavorites, unFavorite: unFavorite,),
         FilterScreean.id: (ctx) => FilterScreean(filters: filters),
         FavouriteScreen.id: (ctx) => FavouriteScreen(favoriteMeals:favoritMeals),
       },
