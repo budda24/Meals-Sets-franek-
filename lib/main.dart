@@ -35,7 +35,10 @@ class _MyAppState extends State<MyApp> {
         favoritMeals.add(DUMMY_MEALS[index]);
     }else{
       /*checking if favoriteMeals contains the element*/
-       !favoritMeals[index].id.contains(id) ?  favoritMeals.add(DUMMY_MEALS[index]): favoritMeals;
+      /*!favoritMeals[index].id.contains(id) ?  favoritMeals.add(DUMMY_MEALS[index]): favoritMeals;*/
+      if(!favoritMeals.contains(DUMMY_MEALS[index])) {
+        favoritMeals.add(DUMMY_MEALS[index]);
+      }
     }
   }
 
